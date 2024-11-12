@@ -1,24 +1,26 @@
-import 'reflect-metadata';
-import express from 'express';
-import { DataSource } from 'typeorm';
-import { User } from './entity/User';
-import { Post } from './entity/Post';
+import "reflect-metadata";
+import express from "express";
+import { DataSource } from "typeorm";
+import { User } from "./entity/User";
+import { Post } from "./entity/Post";
+import { UserService } from "./Service/User";
+import { PostService } from "./Service/Post";
 
 const app = express();
 app.use(express.json());
 
-const AppDataSource = new DataSource({
+export const AppDataSource = new DataSource({
   type: "mysql",
   host: process.env.DB_HOST || "localhost",
   port: 3306,
   username: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "password",
   database: process.env.DB_NAME || "test_db",
-  entities: [User,Post],
+  entities: [User, Post],
   synchronize: true,
 });
 
-const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const initializeDatabase = async () => {
   await wait(20000);
@@ -33,12 +35,28 @@ const initializeDatabase = async () => {
 
 initializeDatabase();
 
-app.post('/users', async (req, res) => {
-// Crie o endpoint de users
+app.post("/users", async (req, res) => {
+  const userBody = req.body;
+
+  const result = await UserService.createUser(userBody);
+
+  if (result?.error) {
+    return res.status(result.status).send(result.error);
+  }
+
+  res.status(201).send("User created successfully");
 });
 
-app.post('/posts', async (req, res) => {
-// Crie o endpoint de posts
+app.post("/posts", async (req, res) => {
+  const postBody = req.body;
+
+  const result = await PostService.createPost(postBody);
+
+  if (result?.error) {
+    return res.status(result.status).send(result.error);
+  }
+
+  res.status(201).send("Post created successfully");
 });
 
 const PORT = process.env.PORT || 3000;
