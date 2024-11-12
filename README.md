@@ -1,59 +1,67 @@
-# Descrição do Teste para a Vaga de Desenvolvedor Jr.
+![Logo](https://s3.amazonaws.com/enlizt-resources-prod/companies/fde32590-751f-11eb-a39f-5ffd1579e1b3_64_avatar?nocache=1708374010185)
 
-## Contextualização do Desafio
+### Water Services and Technologies
 
-Este teste foi desenvolvido para avaliar suas habilidades práticas em tarefas comuns do dia a dia de um desenvolvedor júnior. Através deste desafio, você terá a oportunidade de demonstrar seu conhecimento na criação de banco de dados, definição de relacionamentos entre tabelas e entidades, além de aplicar boas práticas de desenvolvimento em um ambiente Docker. O objetivo é simular uma situação real de desenvolvimento de uma aplicação simples, onde você deverá criar as estruturas necessárias e garantir que o sistema esteja funcionando corretamente por meio de testes. A conclusão bem-sucedida desta tarefa refletirá seu domínio de conceitos importantes para a vaga.
+# Project challenge with Typescript/Typeorm
 
-## 1º Passo: Criação das Tabelas no `init.sql`
+Fork project from challenge created by [Water Services and Technologies](https://github.com/Waterservicestech/dev_test). The main goal is to create a API using a pre-created project, configure docker, entities and endpoints.
 
-Dentro do arquivo `init.sql`, crie as seguintes tabelas:
+## Screenshots
 
-### Tabela `user`
-- **id** – Tipo: `Int`, autoincremental, chave primária (PK).
-- **firstName** – Tipo: `Varchar(100)`, não nulo.
-- **lastName** – Tipo: `Varchar(100)`, não nulo.
-- **email** – Tipo: `Varchar(100)`, não nulo.
+![App Screenshot](https://via.placeholder.com/468x300?text=Water%20Services%20and%20Technologies)
 
-### Tabela `post`
-- **id** – Tipo: `Int`, autoincremental, chave primária (PK).
-- **title** – Tipo: `Varchar(100)`, não nulo.
-- **description** – Tipo: `Varchar(100)`, não nulo.
-- **userId** – Tipo: `Int`, não nulo (chave estrangeira referenciando a tabela `user`).
+## Environment Variables
 
----
+To run this project, you will need to add the following environment variables to your .env file
 
-## 2º Passo: Criação das Entidades `User` e `Post`
+`DB_HOST` - Database hostname(Default: localhost)
 
-Dentro da pasta `src/Entity`, crie as entidades correspondentes às tabelas `User` e `Post`.
+`DB_USER` - Database username (Default: root)
 
----
+`DB_PASSWORD` - Database username (Default: password)
 
-## 3º Passo: Configurar endpoints `users` e `posts`
+`DB_NAME` - Database username (Default: test_db)
 
-Dentro de `src/index.ts`, configure dois endpoints `users` & `posts`
+`PORT` - Database username (Default: 3000)
 
----
+## Build and Run Locally
 
-## 4º Passo: Configuração do Dockerfile
+Clone the project
 
-Configure o `Dockerfile` da aplicação para garantir que ela seja construída corretamente no ambiente Docker.
+```bash
+  git clone https://github.com/edersonff/dev_test
+```
 
----
+Go to the project directory
 
-## 5º Passo: Teste da Aplicação
+```bash
+  cd dev_test
+```
 
-Execute os seguintes comandos para testar a aplicação:
+Install dependencies
 
-1. **Subir a aplicação utilizando Docker Compose**:
-   ```bash
-   docker compose up --build
-   docker exec -it <Container Name> /bin/sh
-   
-   ```
+```bash
+  npm install # yarn
+```
 
-   Dentro do container, execute o teste:
-   ```bash
-   npm test
-   ```
+Build project
 
-## 6º Passo: Crie um fork desse repositório e submita o código preenchido nele.
+```bash
+  npm run build # yarn build
+```
+
+Start the server
+
+```bash
+  npm start  # yarn start
+```
+
+# Hi, I'm Ederson! 👋
+
+<div align="center"> 
+ 
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ederson.tech/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ederson-franzen-fagundes/)
+[![instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/edersonfff)
+[![whatsapp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/5547996556538)
+</div>
