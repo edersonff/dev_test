@@ -6,10 +6,14 @@ export class UserService {
   static async createUser(user: DeepPartial<User>) {
     const isInvalid = this.isInvalid(user);
     if (isInvalid) {
-      return { error: isInvalid.error };
+      return { error: isInvalid.error, status: 400 };
     }
 
-    AppDataSource.getRepository(User).save(user);
+    try {
+      AppDataSource.getRepository(User).save(user);
+    } catch (err) {
+      return { error: "Error saving post", status: 500 };
+    }
   }
 
   // TODO: Implement body validation, ex: zod or express-validator.

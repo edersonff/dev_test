@@ -6,10 +6,14 @@ export class PostService {
   static async createPost(post: DeepPartial<Post>) {
     const isInvalid = this.isInvalid(post);
     if (isInvalid) {
-      return { error: isInvalid.error };
+      return { error: isInvalid.error, status: 400 };
     }
 
-    AppDataSource.getRepository(Post).save(post);
+    try {
+      AppDataSource.getRepository(Post).save(post);
+    } catch (err) {
+      return { error: "Error saving post", status: 500 };
+    }
   }
 
   // TODO: Implement body validation, ex: zod or express-validator.
