@@ -10,7 +10,7 @@ export class PostService {
     }
 
     try {
-      AppDataSource.getRepository(Post).save(post);
+      return await AppDataSource.getRepository(Post).save(post);
     } catch (err) {
       return { error: "Error saving post", status: 500 };
     }

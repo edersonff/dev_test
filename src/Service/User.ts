@@ -3,6 +3,10 @@ import { User } from "../entity/User";
 import { AppDataSource } from "..";
 
 export class UserService {
+  static async getUsers() {
+    return AppDataSource.getRepository(User).find();
+  }
+
   static async createUser(user: DeepPartial<User>) {
     const isInvalid = this.isInvalid(user);
     if (isInvalid) {
@@ -10,7 +14,7 @@ export class UserService {
     }
 
     try {
-      AppDataSource.getRepository(User).save(user);
+      return await AppDataSource.getRepository(User).save(user);
     } catch (err) {
       return { error: "Error saving post", status: 500 };
     }

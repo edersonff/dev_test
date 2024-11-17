@@ -5,6 +5,7 @@ import { User } from "./entity/User";
 import { Post } from "./entity/Post";
 import { UserService } from "./Service/User";
 import { PostService } from "./Service/Post";
+import { ApiError } from "./@type/error";
 
 const app = express();
 app.use(express.json());
@@ -39,24 +40,26 @@ app.post("/users", async (req, res) => {
   const userBody = req.body;
 
   const result = await UserService.createUser(userBody);
+  const error = result as ApiError;
 
-  if (result?.error) {
-    return res.status(result.status).send(result.error);
+  if (error.error) {
+    return res.status(error.status).send(error.error);
   }
 
-  res.status(201).send("User created successfully");
+  res.status(201).send(result);
 });
 
 app.post("/posts", async (req, res) => {
   const postBody = req.body;
 
   const result = await PostService.createPost(postBody);
+  const error = result as ApiError;
 
-  if (result?.error) {
-    return res.status(result.status).send(result.error);
+  if (error.error) {
+    return res.status(error.status).send(error.error);
   }
 
-  res.status(201).send("Post created successfully");
+  res.status(201).send(result);
 });
 
 const PORT = process.env.PORT || 3000;
